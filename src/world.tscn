@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://481sitb6c70j"]
+
+[ext_resource type="PackedScene" uid="uid://2ywj84tltr0y" path="res://src/player.tscn" id="1_8v2ra"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kjjyb"]
+
+[node name="world" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_8v2ra")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.66132)
+mesh = SubResource("BoxMesh_kjjyb")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5057, 1.72445, -0.463441)
+mesh = SubResource("BoxMesh_kjjyb")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36889, -0.171766, -0.0492291)
+mesh = SubResource("BoxMesh_kjjyb")
