@@ -1,8 +1,89 @@
-[gd_scene format=3 uid="uid://2ywj84tltr0y"]
+[gd_scene load_steps=16 format=3 uid="uid://2ywj84tltr0y"]
+
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_jyoxp"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_4leac"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_pkpm6"]
+[ext_resource type="PackedScene" uid="uid://tgekxp51ry0v" path="res://src/01 Residential Buildings Set.glb" id="3_2rcax"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_6nee5"]
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="4_88ynt"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_btflo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cqpws"]
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_yh3hy"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5ua3w"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_swgmj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shxl1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ratk6"]
+
+[sub_resource type="Sky" id="Sky_1cf4g"]
+sky_material = SubResource("ProceduralSkyMaterial_ratk6")
+
+[sub_resource type="Environment" id="Environment_rmbws"]
+background_mode = 2
+sky = SubResource("Sky_1cf4g")
 
 [node name="player" type="Node3D"]
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 current = true
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+tracker = &"left_hand"
+pose = &"aim"
+
+[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("1_jyoxp")]
+
+[node name="MovementDirect" parent="XROrigin3D/LeftController" instance=ExtResource("2_pkpm6")]
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+tracker = &"right_hand"
+pose = &"aim"
+
+[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("2_4leac")]
+
+[node name="MovementDirect" parent="XROrigin3D/RightController" instance=ExtResource("2_pkpm6")]
+
+[node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("4_6nee5")]
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("5_btflo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.57371, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/PlayerBody"]
+shape = SubResource("BoxShape3D_cqpws")
+
+[node name="01 Residential Buildings Set" parent="." instance=ExtResource("3_2rcax")]
+transform = Transform3D(-0.0794509, 0, -0.996839, 0, 1, 0, 0.996839, 0, -0.0794509, 0.127359, 0.573151, -11.6704)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="01 Residential Buildings Set"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="01 Residential Buildings Set"]
+mesh = SubResource("PlaceholderMesh_yh3hy")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_5ua3w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("PlaneMesh_swgmj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 200, 0, -1, 0)
+shape = SubResource("BoxShape3D_shxl1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.755488, 0.655163, 0, -0.655163, 0.755488, 0, 3.22193, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rmbws")
+
+[node name="StartXR" parent="." instance=ExtResource("4_88ynt")]
