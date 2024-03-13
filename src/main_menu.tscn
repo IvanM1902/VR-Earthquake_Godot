@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5d1majs8kaq"]
+
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="1_u8yoi"]
+[ext_resource type="PackedScene" uid="uid://c6anmt5xh8uo7" path="res://src/main_menu_UI.tscn" id="2_cevn4"]
+[ext_resource type="PackedScene" uid="uid://cv22j5uhnc5bs" path="res://src/Player_node.tscn" id="3_ewv5f"]
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="4_ild0u"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1tndw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fnj56"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0d11"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("1_u8yoi")]
+transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, -0.0879893, 1.4638, -2.32799)
+screen_size = Vector2(1280, 720)
+scene = ExtResource("2_cevn4")
+viewport_size = Vector2(1280, 720)
+transparent = 0
+alpha_scissor_threshold = 0.408
+unshaded = true
+
+[node name="Player" parent="." instance=ExtResource("3_ewv5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0251471, 0.691859, 0.523917)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073463, 0.0738101, -2.35941)
+physics_material_override = SubResource("PhysicsMaterial_1tndw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("PlaneMesh_fnj56")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 200, 0, -1, 0)
+shape = SubResource("BoxShape3D_w0d11")
+
+[node name="StartXR" parent="." instance=ExtResource("4_ild0u")]

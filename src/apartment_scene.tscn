@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckl2070i1ry20"]
+
+[ext_resource type="PackedScene" uid="uid://cv22j5uhnc5bs" path="res://src/Player_node.tscn" id="1_3mkrx"]
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="2_rmlru"]
+[ext_resource type="ArrayMesh" uid="uid://b6vvcwf6x46y8" path="res://addons/kaykit_furniture_bits/Assets/obj/chair_A_wood.obj" id="3_3cedm"]
+[ext_resource type="ArrayMesh" uid="uid://bqlx2rgsvd4iq" path="res://addons/kaykit_furniture_bits/Assets/obj/table_medium.obj" id="4_bns2f"]
+[ext_resource type="AudioStream" uid="uid://bf50cdjoxuvlg" path="res://Sounds/earthquake-63540.mp3" id="5_b8x5w"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e1r44"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_26tgj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jup7p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fkv86"]
+
+[node name="Apartment" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_e1r44")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 40, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_26tgj")
+
+[node name="Player" parent="." instance=ExtResource("1_3mkrx")]
+
+[node name="StartXR" parent="." instance=ExtResource("2_rmlru")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.337298, 0.22228, -0.914779, 0.0768986, 0.974983, 0.208555, 0.938252, -6.99052e-09, -0.345953, -22.5232, 10.4876, -10.3853)
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16904, 1.57901, 7.09399)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 0.3, 0, 1, 0)
+mesh = SubResource("BoxMesh_jup7p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 0.3, 0, 1, 0)
+shape = SubResource("BoxShape3D_fkv86")
+
+[node name="Wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16904, 1.57901, -13.1223)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall3"]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 0.3, 0, 1, 0.0406723)
+mesh = SubResource("BoxMesh_jup7p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 0.3, 0, 1, 0)
+shape = SubResource("BoxShape3D_fkv86")
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, 1.579, -2.906)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 0.3, 0, 1, 0)
+mesh = SubResource("BoxMesh_jup7p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 0.3, 0, 1, 0)
+shape = SubResource("BoxShape3D_fkv86")
+
+[node name="Wall4" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.57704, 1.579, -2.906)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall4"]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 0.3, 0, 1, 0)
+mesh = SubResource("BoxMesh_jup7p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 0.3, 0, 1, 0)
+shape = SubResource("BoxShape3D_fkv86")
+
+[node name="ChairAWood" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52198, 0.168058, -9.77977)
+mesh = ExtResource("3_3cedm")
+
+[node name="ChairAWood2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.998473, 0, 0.0552465, 0, 1, 0, -0.0552465, 0, -0.998473, 5.52198, 0.168058, -7.00552)
+mesh = ExtResource("3_3cedm")
+
+[node name="TableMedium" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.63875, 0, -8.72355)
+mesh = ExtResource("4_bns2f")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_b8x5w")
+volume_db = 3.2
+autoplay = true
+mix_target = 1
