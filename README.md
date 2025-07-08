@@ -1,13 +1,13 @@
-VR Earthquake Experience
+# VR Earthquake Experience
 Final Year Project - BSc in Computer Science
 This repository contains the source code for the "VR Earthquake Experience," a virtual reality (VR) application developed as a final year project for a Bachelor of Science in Computer Science at Technological University Dublin. The project aims to enhance earthquake preparedness and safety awareness through an immersive and interactive simulation.
 
-💡 Project Overview
+## 💡 Project Overview
 The "VR Earthquake Experience" immerses users in realistic earthquake scenarios within a virtual environment, such as an apartment and a street. The primary goal is to educate users, particularly children, on effective response strategies during an earthquake. By providing a "real feel" presentation with visuals and sounds, the application helps users understand how to behave and immediately respond to such an event.
 
 A key feature is a gamified scoring system that awards points for choosing correct hiding spots, motivating users to learn and improve their safety knowledge. Additionally, the application includes an interactive map of the Western United States, displaying historical earthquake data from the National Earthquake Information Center (NEIC), allowing users to explore details of past seismic events.
 
-✨ Features
+## ✨ Features
 Immersive Earthquake Simulation: Experience realistic earthquake scenarios in a VR environment.
 
 Interactive Learning: Learn safe hiding spots and emergency procedures.
@@ -24,7 +24,7 @@ Leaderboard: View top players based on their scores, adding a competitive learni
 
 User-Friendly Interface: Intuitive VR controls for movement and UI interaction.
 
-🛠️ Technologies Used
+## 🛠️ Technologies Used
 Game Engine: Godot 4.x
 
 VR Headset: Meta Quest 2
@@ -39,7 +39,7 @@ VR Toolkit: godot-xr-tools library for core VR functionalities (player movement,
 
 Data Source: National Earthquake Information Center (NEIC) for historical earthquake data.
 
-🚀 Getting Started
+## 🚀 Getting Started
 To run this project, you will need:
 
 Godot Engine 4.x: Download from the official Godot website.
@@ -50,13 +50,7 @@ Godot SQLite Addon: Ensure this addon is correctly configured within your Godot 
 
 Godot XR Tools Library: This library is integrated for VR functionalities.
 
-Installation & Setup:
-Clone the repository:
-
-git clone https://github.com/your-username/VR-Earthquake-Experience.git
-cd VR-Earthquake-Experience
-
-(Replace your-username with your actual GitHub username and VR-Earthquake-Experience with your repository name)
+## Installation & Setup:
 
 Open in Godot Engine:
 
@@ -121,6 +115,3 @@ Enhanced Interactivity: Increase interaction with objects in the game environmen
 Global Earthquake Data: Expand the earthquake map to include data from around the world.
 
 Advanced Gamification: Introduce more complex gamification elements and challenges.
-
-🤝 Contributing
-This project was developed as a final year academic endeavor. While not actively seeking external contributions for this specific academic version, insights and suggestions are always welcome.
